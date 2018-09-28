@@ -3,6 +3,9 @@ FROM php:7.2-fpm-alpine
 RUN apk update \
 	&& apk add \
 		vim \
+		zip \
+		unzip \
+		git \
 		bash \
 		wget \
 		curl \
