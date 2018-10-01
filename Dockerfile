@@ -8,13 +8,21 @@ RUN apk update \
 		git \
 		bash \
 		wget \
+		autoconf \
+		openssl-dev \
+		make \
 		curl \
 		bind-tools \
 		zlib-dev \
         icu-dev \
 		libmemcached-dev \
+		libssl1.0 \
 		g++ \
 && rm -rf /var/lib/apt/lists/*
+
+RUN pecl install mongodb && \
+    docker-php-ext-enable mongodb && \
+	apk del --purge autoconf openssl-dev g++ make
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
